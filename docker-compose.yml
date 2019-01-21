@@ -1,0 +1,21 @@
+version: "3"
+services:
+  php_cli:
+    build: .docker/php
+    volumes:
+      - '.:/www/project:delegated'
+    entrypoint: php
+    networks:
+      - project
+
+  composer:
+    build: .docker/php
+    entrypoint: composer
+    volumes:
+      - '.:/www/project:delegated'
+    networks:
+      - project
+
+networks:
+  project:
+    external: true
